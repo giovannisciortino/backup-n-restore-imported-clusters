@@ -1,0 +1,20 @@
+---
+
+- name: Verify ACM Hub cluster connection
+  kubernetes.core.k8s_cluster_info:
+    context: "{{ HUB_CONTEXT }}"
+    invalidate_cache: False
+  register: api_status
+
+- name: Inject labels in ManagedCluster CR
+  kubernetes.core.k8s:
+    context: "{{ HUB_CONTEXT }}"
+    state: patched
+    definition:
+      apiVersion: cluster.open-cluster-management.io/v1
+      kind: ManagedCluster
+      metadata:
+        labels: "{{item.labels}}"
+        name: "{{item.name}}"
+  loop: "{{ CLUSTER_LABELS }}"
+

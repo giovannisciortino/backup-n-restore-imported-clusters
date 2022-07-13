@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  become: false
+  vars_files:
+    - vars/vars-hub.yml
+    - vars/vars-managed-clusters-labels.yml
+  tasks:
+  - include_role: 
+      name: ./roles/add-labels-to-managed-clusters
+

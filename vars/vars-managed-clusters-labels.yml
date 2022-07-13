@@ -1,0 +1,10 @@
+CLUSTER_LABELS:
+  - name: api-lab01-gpslab-club
+    labels: 
+      env: "prod"
+      environment: "lab01"
+  - name: api-lab02-gpslab-club
+    labels: 
+      cluster_type: "lab02"
+      env: "stage"
+
